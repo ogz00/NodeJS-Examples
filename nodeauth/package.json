@@ -21,6 +21,7 @@
     "express-messages": "*",
     "passport": "*",
     "passport-local": "*",
+    "passport-local-mongoose": "*",
     "passport-http": "*",
     "monk": "*",
     "multer": "*",

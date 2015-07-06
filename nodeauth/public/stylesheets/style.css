@@ -1,6 +1,7 @@
 body {
     padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-family: arial;
+
 }
 
 a {
@@ -14,4 +15,32 @@ footer {
     margin-top: 30px;
     padding-top: 10px;
     overflow: auto;
+
+}
+
+ul.success li, ul.info li, ul.error li {
+
+    margin: 20px 0 20px;
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    list-style: none;
+}
+
+ul.info li {
+    color: #31708f;
+    background: #d9edf7;
+    border-color: #bce8f1;
+}
+
+ul.success li {
+    color: #3c763d;
+    background: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+ul.error li {
+    color: #FF0000;
+    background: #880000;
+    border-color: #A00000;
 }

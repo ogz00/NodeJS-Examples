@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
-var localStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var multer = require('multer');
 var flash = require('connect-flash');
 var mongo = require('mongodb');
@@ -21,7 +21,7 @@ var app = express();
 
 var http = require('http');
 
-console.warn('Server running at http://localhost:3000/');
+console.info('Server running at http://localhost:3000/');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,7 +43,8 @@ app.use(require('express-session')({
     resave: false
 
 }));
-//Pasport
+
+//Pasport configure
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -67,13 +68,20 @@ app.use(expressValidator({
     }
 }));
 
+//Flash Messages
 app.use(flash());
 app.use(function (req, res, next) {
     res.locals.messages = require('express-messages')(req, res);
     next();
 });
 
+app.get('*', function (req, res, next) {
+    res.locals.user = req.user || null;
+    next();
+});
 
+
+//routes
 app.use('/', routes);
 app.use('/users', users);
 
@@ -84,7 +92,6 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-// error handlers
 
 // development error handler
 // will print stacktrace

@@ -1,4 +1,5 @@
 doctype html
+
 html
     head
         title #{title}
@@ -19,22 +20,25 @@ html
                         span.icon-bar
                         span.icon-bar
                         span.icon-bar
-                    a.navbar-brand(href='#') NodeAuth
+                    a.navbar-brand(href='/') NodeAuth
                 #navbar.collapse.navbar-collapse
                     ul.nav.navbar-nav
                         li(class=(title === 'Members Area' ? 'active' : ''))
                             a(href='/') Members
-                        li(class=(title === 'Register' ? 'active' : ''))
-                            a(href='/users/register') Register
-                        li(class=(title === 'Login' ? 'active' : ''))
-                            a(href='/users/login') Login
+                        if !user
+                            li(class=(title === 'Register' ? 'active' : ''))
+                                a(href='/users/register') Register
+                            li(class=(title === 'Login' ? 'active' : ''))
+                                a(href='/users/login') Login
                     ul.nav.navbar-nav.navbar-right
-                        li
-                            a(href='/users/logout') Logout
+                        if user
+                            li
+                                a(href='/users/logout') Logout
                 // /.nav-collapse
         .container
+            !=messages()
             block content
-        footer
+        //footer
             p &copy; 2015, All Rights Reserved
         //
           Bootstrap core JavaScript
