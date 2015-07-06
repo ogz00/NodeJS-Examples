@@ -1,0 +1,33 @@
+//
+   Created by oguzhan on 05.07.2015.
+
+extends layout
+block content
+    .col-lg-7.col-md-7.col-sm-9.col-xs-9
+        .jumbotron
+            h1= title
+            p Please register using the form below
+            ul.errors
+                if errors
+                    each error, i in errors
+                        li.alert-danger #{error.msg}
+            form(method='post', action='/users/register', enctype='multipart/form-data')
+                .form-group
+                    label Name
+                    input.form-control(type='text', name='name', placeholder='Enter Name')
+                .form-group
+                    label Email
+                    input.form-control(type='email', name='email', placeholder='Enter Email')
+                .form-group
+                    label Username
+                    input.form-control(type='text', name='username', placeholder='Enter Username')
+                .form-group
+                    label Password
+                    input.form-control(type='password', name='password', placeholder='Enter Password')
+                .form-group
+                    label Confirm Password
+                    input.form-control(type='password', name='password2', placeholder='Confirm Password')
+                .form-group
+                    label Profile Image
+                    input.form-control(type='file', name='profileimage')
+                input.btn.btn-default(name='submit', type='submit', value='Register')
